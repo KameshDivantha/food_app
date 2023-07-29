@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/cart_controller.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
@@ -38,9 +39,10 @@ class PopularFoodDetail extends StatelessWidget {
                   decoration: BoxDecoration(
                       image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: NetworkImage(AppConstants.BASE_URL +
-                              AppConstants.UPLOAD_URL +
-                              product.img!))),
+                          image: CachedNetworkImageProvider(
+                              AppConstants.BASE_URL +
+                                  AppConstants.UPLOAD_URL +
+                                  product.img!))),
                 )),
             Positioned(
                 top: Dimensions.height45,

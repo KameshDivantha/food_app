@@ -4,6 +4,10 @@ import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/widgets/small_text.dart';
+import 'package:get/get.dart';
+
+import '../../controllers/popular_product_controller.dart';
+import '../../controllers/recommended_product_controller.dart';
 
 class MainFoodPage extends StatefulWidget {
   const MainFoodPage({super.key});
@@ -13,59 +17,67 @@ class MainFoodPage extends StatefulWidget {
 }
 
 class _MainFoodPageState extends State<MainFoodPage> {
+  Future<void> _loadResources() async {
+    await Get.find<PopularProductController>().getPopularProductList();
+    await Get.find<RecommendedProductController>().getRecommendedProductList();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SafeArea(
-      child: Column(
-        children: [
-          Container(
-            child: Container(
-              margin: EdgeInsets.only(
-                top: Dimensions.height10,
-                bottom: Dimensions.height15,
-              ),
-              padding: EdgeInsets.only(
-                left: Dimensions.width20,
-                right: Dimensions.width20,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
+    return RefreshIndicator(
+        onRefresh: _loadResources,
+        child: SafeArea(
+          child: Column(
+            children: [
+              Container(
+                child: Container(
+                  margin: EdgeInsets.only(
+                    top: Dimensions.height10,
+                    bottom: Dimensions.height15,
+                  ),
+                  padding: EdgeInsets.only(
+                    left: Dimensions.width20,
+                    right: Dimensions.width20,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      BigText(
-                        text: "Sri Lanka",
-                        color: AppColors.mainColor,
-                      ),
-                      Row(
+                      Column(
                         children: [
-                          SmallText(text: "Matara"),
-                          const Icon(Icons.arrow_drop_down)
+                          BigText(
+                            text: "Sri Lanka",
+                            color: AppColors.mainColor,
+                          ),
+                          Row(
+                            children: [
+                              SmallText(text: "Matara"),
+                              const Icon(Icons.arrow_drop_down)
+                            ],
+                          )
                         ],
+                      ),
+                      Container(
+                        height: Dimensions.height45,
+                        width: Dimensions.height45,
+                        decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.circular(Dimensions.radius15),
+                            color: AppColors.mainColor),
+                        child: Icon(
+                          Icons.search,
+                          color: Colors.white,
+                          size: Dimensions.iconSize24,
+                        ),
                       )
                     ],
                   ),
-                  Container(
-                    height: Dimensions.height45,
-                    width: Dimensions.height45,
-                    decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.circular(Dimensions.radius15),
-                        color: AppColors.mainColor),
-                    child: Icon(
-                      Icons.search,
-                      color: Colors.white,
-                      size: Dimensions.iconSize24,
-                    ),
-                  )
-                ],
+                ),
               ),
-            ),
+              const Expanded(
+                  child: SingleChildScrollView(
+                      physics: BouncingScrollPhysics(), child: FoodPageBody())),
+            ],
           ),
-          const Expanded(child: SingleChildScrollView(child: FoodPageBody())),
-        ],
-      ),
-    ));
+        ));
   }
 }

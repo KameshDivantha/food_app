@@ -34,6 +34,7 @@ class PopularProductController extends GetxController {
       update();
     } else {
       print('error');
+      print(response.statusCode);
     }
   }
 

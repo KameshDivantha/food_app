@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/cart_controller.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/controllers/recommended_product_controller.dart';
+import 'package:food_delivery/pages/auth/signin_page.dart';
 import 'package:get/get.dart';
 
 import 'helper/dependencies.dart' as dep;
-import 'routes/route_helper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,12 +22,12 @@ class MyApp extends StatelessWidget {
     return GetBuilder<PopularProductController>(
       builder: (_) {
         return GetBuilder<RecommendedProductController>(builder: (_) {
-          return GetMaterialApp(
+          return const GetMaterialApp(
             title: 'Flutter Demo',
             debugShowCheckedModeBanner: false,
-            // home: const SplashScreen(),
-            initialRoute: RouteHelper.getSplashPage(),
-            getPages: RouteHelper.routes,
+            home: SignInPage(),
+            // initialRoute: RouteHelper.getSplashPage(),
+            // getPages: RouteHelper.routes,
           );
         });
       },

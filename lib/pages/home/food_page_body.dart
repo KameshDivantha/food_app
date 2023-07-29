@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
@@ -141,11 +142,12 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                   color: Colors.white38,
                                   image: DecorationImage(
                                     fit: BoxFit.cover,
-                                    image: NetworkImage(AppConstants.BASE_URL +
-                                        AppConstants.UPLOAD_URL +
-                                        recommendedProduct
-                                            .recommendedProductList[index]
-                                            .img!),
+                                    image: CachedNetworkImageProvider(
+                                        AppConstants.BASE_URL +
+                                            AppConstants.UPLOAD_URL +
+                                            recommendedProduct
+                                                .recommendedProductList[index]
+                                                .img!),
                                   )),
                             ),
                           ),
@@ -255,7 +257,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                     ? const Color(0xFF69c5df)
                     : const Color(0xFF9294cc),
                 image: DecorationImage(
-                    image: NetworkImage(
+                    image: CachedNetworkImageProvider(
                         "${AppConstants.BASE_URL}/uploads/${popularProduct.img!}"),
                     fit: BoxFit.cover),
               ),
