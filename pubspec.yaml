@@ -38,6 +38,7 @@ dependencies:
   dots_indicator: ^2.1.1
   get: ^4.6.5
   shared_preferences: ^2.0.11
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
