@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/pages/account/account_page.dart';
-import 'package:food_delivery/pages/auth/signup_page.dart';
 import 'package:food_delivery/pages/cart/cart_history.dart';
 import 'package:food_delivery/pages/home/main_food_page.dart';
 import 'package:food_delivery/utils/colors.dart';
+
+import '../auth/signin_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,7 +17,9 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   List pages = [
     const MainFoodPage(),
-    const SignUpPage(),
+    const SignInPage(),
+    // const SignUpPage(),
+    // Container(child: const Text("empty page")),
     const CartHistory(),
     const AccountPage()
   ];

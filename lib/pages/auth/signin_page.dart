@@ -26,10 +26,12 @@ class SignInPage extends StatelessWidget {
 
       if (email.isEmpty) {
         showCustomSnackBar("Type in your email", title: "Email");
-      } else if (!GetUtils.isEmail(email)) {
-        showCustomSnackBar("Type in a valid email address",
-            title: "Invalid Email");
-      } else if (password.isEmpty) {
+      }
+      //  else if (!GetUtils.isEmail(email)) {
+      //   showCustomSnackBar("Type in a valid email address",
+      //       title: "Invalid Email");
+      // }
+      else if (password.isEmpty) {
         showCustomSnackBar("Type in your password", title: "Password");
       } else if (password.length < 6) {
         showCustomSnackBar("Password cannot be less that 6 characters",
@@ -38,6 +40,7 @@ class SignInPage extends StatelessWidget {
         authController.login(email, password).then((status) {
           if (status.isSuccess) {
             Get.toNamed(RouteHelper.getInitial());
+            // Get.toNamed(RouteHelper.getCartPage());
           } else {
             showCustomSnackBar(status.message);
           }
