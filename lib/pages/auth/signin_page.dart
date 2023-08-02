@@ -17,12 +17,12 @@ class SignInPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var emailController = TextEditingController();
+    var phoneController = TextEditingController();
     var passwordController = TextEditingController();
 
     void login(AuthController authController) {
       String password = passwordController.text.trim();
-      String email = emailController.text.trim();
+      String email = phoneController.text.trim();
 
       if (email.isEmpty) {
         showCustomSnackBar("Type in your email", title: "Email");
@@ -93,9 +93,9 @@ class SignInPage extends StatelessWidget {
                       ),
                       SizedBox(height: Dimensions.height10),
                       AppTextField(
-                          textController: emailController,
-                          hintText: "Email",
-                          icon: Icons.email),
+                          textController: phoneController,
+                          hintText: "phone",
+                          icon: Icons.phone),
                       SizedBox(height: Dimensions.height20),
                       AppTextField(
                           isObscure: true,
